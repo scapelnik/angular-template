@@ -1,0 +1,81 @@
+<div class="container">
+  <div class="menu">
+    <app-menu (formSelected)="switchForm($event)"></app-menu>
+  </div>
+
+  <div class="main">
+    <div class="top">
+      <div class="left">
+        <ng-container [ngSwitch]="selectedType">
+
+          <app-parcel-form 
+              *ngSwitchCase="'parcel'" 
+              (saved)="refreshTable()"
+              (statusMessage)="updateStatus($event)">
+          </app-parcel-form>
+
+          <app-building-form 
+              *ngSwitchCase="'building'" 
+              (saved)="refreshTable()"
+              (statusMessage)="updateStatus($event)">
+          </app-building-form>
+          
+          <app-road-form 
+              *ngSwitchCase="'road'" 
+              (saved)="refreshTable()"
+              (statusMessage)="updateStatus($event)">
+          </app-road-form>
+
+          <app-address-form 
+              *ngSwitchCase="'address'" 
+              (saved)="refreshTable()"
+              (statusMessage)="updateStatus($event)">
+            </app-address-form>
+
+        </ng-container>
+      </div>
+
+      <div class="right">
+        <ng-container>
+           <app-map></app-map>
+        </ng-container>
+      </div>
+
+    </div>
+    <div class="bottom">
+      <ng-container [ngSwitch]="selectedType">
+        
+        <app-parcel-table 
+           *ngSwitchCase="'parcel'"
+           (editParcel)="handleEditParcel($event)" 
+           (statusMessage)="updateStatus($event)"
+           (saved)="refreshTable()"> 
+        </app-parcel-table>
+
+        <app-building-table 
+           *ngSwitchCase="'building'"
+           (editBuilding)="handleEditBuilding($event)" 
+           (statusMessage)="updateStatus($event)"
+           (saved)="refreshTable()"> 
+        </app-building-table>        
+
+        <app-road-table 
+           *ngSwitchCase="'road'" 
+           (editRoad)="handleEditRoad($event)" 
+           (statusMessage)="updateStatus($event)"
+           (saved)="refreshTable()"> 
+        </app-road-table>
+
+        <app-address-table 
+           *ngSwitchCase="'address'" 
+           (editAddress)="handleEditAddress($event)" 
+           (statusMessage)="updateStatus($event)"
+           (saved)="refreshTable()">
+        </app-address-table> 
+        
+      </ng-container>
+    </div>
+  </div>
+
+  <div class="status">{{statusText}}</div>
+</div>

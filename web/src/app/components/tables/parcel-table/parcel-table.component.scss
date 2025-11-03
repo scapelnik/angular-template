@@ -1,0 +1,62 @@
+.scrollable-table {                              /* To je tu, zaradi scrolanja zapisov v tabeli, določimo območje scrolanja, da glava tabele ostane kjer je*/
+  max-height: 380px; /* višina vidnega dela */
+  overflow-y: auto;  /* omogoči navpični drsnik */
+  border: 1px solid #ccc;
+}
+
+/* da glava ostane vidna */
+.scrollable-table thead th {
+  position: sticky;
+  top: 0;
+  background-color: #f8f9fa; /* barva ozadja glave */
+  z-index: 2;
+}
+
+
+
+
+
+// Označena vrstica v tabeli - RUMENO OZADJE
+tr.selected {
+  background-color: yellow !important; // rumeno ozadje
+  font-weight: bold;
+}
+
+// Hover efekt na vrsticah
+tr:hover {
+  background-color: rgba(0, 0, 0, 0.05);
+  cursor: pointer;
+}
+
+// Kombinacija selected + hover
+tr.selected:hover {
+  background-color: #ffff99 !important; // svetlejša rumena pri hover
+}
+
+// Animacija pri označitvi
+tr.selected {
+  transition: background-color 0.3s ease;
+}
+
+
+
+
+.kontrolna-vrstica {
+  display: flex;
+  justify-content: space-between; /* ena skupina levo, ena desno */
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.izbira-del {
+  display: flex;
+  align-items: left;
+  gap: 10px;
+}
+
+.iskanje-del {
+  display: flex;
+  align-items: right;
+  justify-content: center;
+  gap: 10px; /* razmik med polji */
+}

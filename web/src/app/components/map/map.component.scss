@@ -1,0 +1,124 @@
+#map {
+    position: relative;
+    // background-color: #add8e6;
+    z-index: 0;
+    // border-radius: 5px;
+    // Round map borders;
+    overflow: hidden;
+    width: 100%;                    // mapa zaseda 100% okvirja zgoraj-desno po širini
+    height: 100%;                   // in po višini
+    //height: calc(100vh - 150px);  // če bi rad, da je mapa večja uporabiš nekaj takega
+}
+#draw-parcel {     // draw-parcel je id html gradnika, v naši html, na katerega se tu nanašamo
+    position: absolute;
+    left: 10px;
+    top: 20px;
+    z-index: 1;
+    border-radius: 5px;
+    opacity: 1;
+}
+
+#draw-road {     // draw-road je id html gradnika, v naši html, na katerega se tu nanašamo
+    position: absolute;
+    left: 10px;
+    top: 50px;
+    z-index: 1;
+    border-radius: 5px;
+    opacity: 1;
+}
+
+#draw-address {       // draw-address je id html gradnika, v naši html, na katerega se tu nanašamo
+    position: absolute;
+    left: 10px;
+    top: 80px;
+    z-index: 1;
+    //border-radius: 5px;
+    opacity: 1;
+}
+
+#draw-building {       // draw-address je id html gradnika, v naši html, na katerega se tu nanašamo
+    position: absolute;
+    left: 10px;
+    top: 110px;
+    z-index: 1;
+    //border-radius: 5px;
+    opacity: 1;
+}
+
+
+
+// gumb za selektiranje parcel
+#select-parcel {
+  position: absolute;
+  left: 40px;
+  top: 20px; // desno od ikone za risanje parcel, ki je na 10,20, ker je gumb 30x30px smo pristali na 40,20
+  z-index: 1;
+  border-radius: 5px;
+  opacity: 1;
+}
+
+// gumb za editiranje parcel
+#edit-parcel {
+  position: absolute;
+  left: 70px;
+  top: 20px; // desno od ikone za selektiraje parcel, ki je na 40,20, ker je gumb 30x30px smo pristali na 70,20
+  z-index: 1;
+  border-radius: 5px;
+  opacity: 1;
+}
+
+// gumb za selektiranje cest
+#select-road {
+  position: absolute;
+  left: 40px;
+  top: 50px; // desno od ikone za risanje cest, ki je na 10,50  gumg je širok 30px (pixels)
+  z-index: 1;
+  border-radius: 5px;
+  opacity: 1;
+}
+
+#edit-road {
+  position: absolute;
+  left: 70px;
+  top: 50px; // desno od ikone za selektiranje cest, ki je na 40,50  gumg je širok 30px (pixels)
+  z-index: 1;
+  border-radius: 5px;
+  opacity: 1;
+}
+
+#select-address {
+  position: absolute;
+  left: 40px;
+  top: 80px; // desno od ikone za risanje cest, ki je na 10,80  gumg je širok 30px (pixels), torej smo na 40,80
+  z-index: 1;
+  border-radius: 5px;
+  opacity: 1;
+}
+
+#edit-address {
+  position: absolute;
+  left: 70px;
+  top: 80px; // desno od ikone za selektiranje cest, ki je na 40,80  gumg je širok 30px (pixels), torej smo na 70,80
+  z-index: 1;
+  border-radius: 5px;
+  opacity: 1;
+}
+
+#select-building {
+  position: absolute;
+  left: 40px;
+  top: 110px; // desno od ikone za risanje cest, ki je na 10,80  gumg je širok 30px (pixels), torej smo na 40,80
+  z-index: 1;
+  border-radius: 5px;
+  opacity: 1;
+}
+
+#edit-building {
+  position: absolute;
+  left: 70px;
+  top: 110px; // desno od ikone za selektiranje cest, ki je na 40,80  gumg je širok 30px (pixels), torej smo na 70,80
+  z-index: 1;
+  border-radius: 5px;
+  opacity: 1;
+}
+

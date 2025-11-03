@@ -1,0 +1,57 @@
+<div class="kontrolna-vrstica">
+  <div class="izbira-del">
+    <INPUT type="radio" id="all" name="izbira" value="all" checked (click)="setIzbira('all')">  
+    <label for="all">Select All</label> 
+    &nbsp; &nbsp; &nbsp;
+    <INPUT type="radio" id="one" name="izbira" value="one" (click)="setIzbira('one')"> 
+    <label for="one">Select One</label> 
+    &nbsp; &nbsp; &nbsp;
+    <label for="e_izb">ID:</label>
+    <input type="text" id="e_izb" name="e_izb" size="3" [value]="inputId" (input)="onInputIdChange($event)">
+  </div>  
+
+  <div class="iskanje-del">
+    <label for="i_ko">Iskanje zapisa KO:</label>
+    <input type="number" id="i_ko" name="i_ko" size="4" [(ngModel)]="iskanjeKO" placeholder="KO" style="width: 60px;">
+    &nbsp;&nbsp;&nbsp;
+    <label for="i_parc">Parc. št.:</label>
+    <input type="number" id="i_stavba" name="i_stavba" size="5" [(ngModel)]="iskanjeStavbe" placeholder="Št. stavbe." style="width: 80px;">
+    <button type="button" class="btn btn-primary btn-sm me-1" (click)="isciStavbo()">Išči</button>
+  </div>
+</div>
+
+
+<div class="scrollable-table" #scrollContainer>
+  <table class="table table-sm">
+    <thead>
+      <tr>
+        <th scope="col">Id</th>
+        <th scope="col">KO</th>
+        <th scope="col">Št.Stavbe</th>
+        <th scope="col" style="width: 250px;">Opis</th>
+        <th scope="col">Površina</th>
+        <th scope="col">Geom WKT</th>
+        <th scope="col">Akcija</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let building of BuildingsArray" 
+          [class.selected]="isBuildingSelected(building.id)">
+        <!--  <td>{{building.id}}</td>  -->
+        <a href="#" (click)="drawBuildingGeometry(building); $event.preventDefault()">{{ building.id }}</a>
+        <td>{{building.sifko}}</td>
+        <td>{{building.st_stavbe}}</td>
+        <td>{{building.description}}</td>
+        <td>{{building.area}}</td>
+        <td>{{building.geom_wkt}}</td>
+        <td style="white-space: nowrap; width: 120px;">
+          <div class="d-flex justify-content-between">
+            <button type="button" class="btn btn-success btn-sm me-1" (click)="setUpdate(building)">Uredi</button>
+            <button type="button" class="btn btn-danger btn-sm" (click)="setDelete(building)">Briši</button>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table> 
+</div>
+

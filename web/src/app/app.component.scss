@@ -1,0 +1,83 @@
+
+
+
+html, body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+}
+
+.container {
+  height: 100vh;
+  width: 100vw;
+  max-width: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.menu {
+  height: 3vh;
+  background-color: #d5ec52;
+  color: white;
+  display: flex;
+  align-items: center;
+  padding-left: 1rem;
+}
+
+.main {
+  height: 94vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.top {
+  height: 60%;
+  display: flex;
+}
+
+.left {
+  width: 40%;
+  // background-color: lightblue;
+}
+
+.right {
+  width: 60%;
+  position: relative; // Ključno za absolute positioning znotraj - dodal, ker risanje ni delovalo na celi površini
+  height: 100%;       // Dodaj višino, da otrok lahko raste      - dodal, ker risanje ni delovalo na celi površini
+  // background-color: lightgreen;
+}
+
+app-map {
+  display: block;
+  height: 100%;
+  width: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+#map {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.bottom {
+  height: 40%;
+  // background-color: lightcoral;
+  overflow: auto;
+}
+
+.status {
+  height: 3vh;
+  background-color: #d5ec52;
+  color: black;
+  display: flex;
+  align-items: center;
+  padding-left: 1rem;
+}
+

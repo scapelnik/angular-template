@@ -1,0 +1,55 @@
+  <div class="kontrolna-vrstica">
+    <div class="izbira-del">
+        <INPUT type="radio" id="all" name="izbira" value="all" checked (click)="setIzbira('all')">  
+        <label for="all">Select All</label> 
+        &nbsp; &nbsp; &nbsp;  <!-- trije presledki -->
+        <INPUT type="radio" id="one" name="izbira" value="one" (click)="setIzbira('one')"> 
+        <label for="one">Select One</label> 
+        &nbsp; &nbsp; &nbsp;  <!-- trije presledki -->
+        <label for="fname">ID:</label>
+        <input type="text" id="e_izb" name="e_izb" size="3" [value]="inputId" (input)="onInputIdChange($event)">
+    </div>
+    <div class="iskanje-del">
+        <label for="fiu">Filtriranje zapisov: Ime ulice: </label>
+        <input type="text" id="fiu" name="flu" size="25" [(ngModel)]="filterImeUlice" placeholder="Ime ulice">
+        <button type="button" class="btn btn-primary btn-sm me-1" (click)="filtrirajImeUlice()">Filtriraj</button>
+        <button type="button" class="btn btn-secondary btn-sm" (click)="clearFilter()">Počisti</button>
+        <span *ngIf="filtriranArray.length > 0 && filterImeUlice" style="margin-left: 10px; font-weight: bold;">Najdenih: {{ filtriranArray.length }}</span>
+    </div>
+  </div>
+  <div class="scrollable-table" #scrollContainer>
+        <table class="table table-sm" style="--bs-table-cell-padding-y:0rem; --bs-table-cell-padding-x:0.25rem;">
+          <thead>
+            <tr>  <!-- imena polj v tabeli (vrstica z imeni polj) -->
+              <th scope="col">Id</th>
+              <th scope="col">Številka stavbe</th>
+              <th scope="col">Ulica</th>
+              <th scope="col">Hišna številka</th>
+              <th scope="col">Poštna številka</th>
+              <th scope="col">Ime pošte</th>
+              <th scope="col">Geom WKT</th>
+              <th scope="col">Akcija</th>    <!-- v ta zadnji stolpec prideta gumba Edit in Delete -->
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let address of filtriranArray" [class.selected]="isAddressSelected(address.id)">
+              <a href="#" (click)="drawAddressGeometry(address); $event.preventDefault()">{{ address.id }}</a>
+              <!-- <td>{{address.id}}</td> -->        <!-- Podatki v tabeli, z zgornjo *ngFor zanko jih polnimo po vrsticah -->
+              <td>{{address.building_num}}</td>
+              <td>{{address.street}}</td>
+              <td>{{address.house_num}}</td>
+              <td>{{address.post_num}}</td>
+              <td>{{address.post_name}}</td>
+              <td>{{address.geom_wkt}}</td>
+
+              <td style="white-space: nowrap; width: 120px;">
+                <div class="d-flex justify-content-between">
+                  <button type="button" class="btn btn-success btn-sm me-1" (click)="setUpdate(address)">Uredi</button>
+                  <button type="button" class="btn btn-danger btn-sm" (click)="setDelete(address)">Briši</button>
+                </div>
+              </td>
+
+            </tr>
+          </tbody>
+        </table> 
+  </div>

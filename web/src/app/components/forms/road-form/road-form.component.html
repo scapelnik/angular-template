@@ -1,0 +1,86 @@
+<div class="container road">
+  <h2>GJI ceste</h2>
+  <div class="road-card">
+    <form #form="ngForm" class="container inner">
+      <div class="row mb-2 align-items-center">       <!--  mb-2 is a margin-bottom class bootstrap-ova zadeva -->
+        <label class="col-sm-2 col-form-label">Ime ulice:</label>   <!-- col-sm-2 bootstrap oblikovanje -->
+        <div class="col-sm-4">
+          <input
+            type="text"
+            [(ngModel)]="road.str_name"
+            name="str_name"
+            class="form-control"
+            placeholder="ime ulice:"
+          />
+        </div>
+      </div>
+
+      <div class="row mb-2 align-items-center">
+        <label class="col-sm-2 col-form-label">Upravljalec:</label>
+        <div class="col-sm-4">
+          <input
+            type="text"
+            [(ngModel)]="road.administrator"
+            name="administrator"
+            class="form-control"
+            placeholder="vpiši upravljalca ceste"
+          />
+        </div>
+      </div>
+
+      <div class="row mb-2 align-items-center">
+        <label class="col-sm-2 col-form-label">Vzdrževalec:</label>
+        <div class="col-sm-4">
+          <input
+            type="text"
+            [(ngModel)]="road.maintainer"
+            name="maintainer"
+            class="form-control"
+            placeholder="vpiši vzdrževalca ceste"
+          />
+        </div>
+      </div>
+
+      <div class="row mb-3 align-items-center">
+        <label class="col-sm-2 col-form-label">Dolžina odseka:</label>
+        <div class="col-sm-4">
+          <input
+            type="text"
+            [(ngModel)]="road.length"
+            name="length"
+            class="form-control"
+            placeholder="" 
+            disabled
+          />
+        </div>
+      </div>
+
+      <div class="row mb-3 align-items-center">
+        <label class="col-sm-2 col-form-label">Geom:</label>
+        <div class="col-sm-10">
+          <textarea
+            [(ngModel)]="road.geom_wkt"
+            name="geom_wkt"
+            class="form-control"
+            rows="4"
+            placeholder="LINESTRING(...)"
+          ></textarea>
+        </div>
+      </div>
+        <!-- Gumbi za dodajanje, posodabljanje in Clear forme -->
+      <button type="button" class="btn btn-primary road" (click)="saveRecords()"> Vstavi </button>
+      &nbsp;
+      <button type="button" class="btn btn-primary road" (click)="updateRecords()"> Posodobi </button>
+      &nbsp;
+      <button type="button" class="btn btn-primary road" (click)="clearForm()"> Počisti </button>
+      <br>   <!-- // izpis praznih vrstic, da se črta za gubom Insert in Update pomakne navzdol -->
+      <br>
+
+    </form>
+
+    <!--  Tukaj dodamo komponento zemljevida z dogodkom wktChange -->
+    <div class="road">
+      
+    </div>
+  </div>
+</div>

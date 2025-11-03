@@ -1,0 +1,71 @@
+<div class="container mt-0">
+  <h2>Zemljiški kataster</h2>
+  <div class="card">
+    <form #form="ngForm" class="container inner">
+      <div class="row mb-2 align-items-center">
+        <label class="col-sm-2 col-form-label">Parcelna št.:</label>
+        <div class="col-sm-4">
+          <input
+            type="text"
+            [(ngModel)]="parcel.parc_st"
+            name="parc_st"
+            class="form-control"
+            placeholder="Parcelna številka"
+          />
+        </div>
+      </div>
+
+      <div class="row mb-2 align-items-center">
+        <label class="col-sm-2 col-form-label">Šifra KO:</label>
+        <div class="col-sm-4">
+          <input
+            type="text"
+            [(ngModel)]="parcel.sifko"
+            name="sifko"
+            class="form-control"
+            placeholder="KO"
+          />
+        </div>
+      </div>
+
+      <div class="row mb-2 align-items-center">
+        <label class="col-sm-2 col-form-label">Površina:</label>
+        <div class="col-sm-4">
+          <input
+            type="number"
+            [(ngModel)]="parcel.area"
+            name="area"
+            class="form-control"
+            placeholder=""
+            disabled
+          />
+        </div>
+      </div>
+
+      <div class="row mb-3 align-items-center">
+        <label class="col-sm-2 col-form-label">Geom:</label>
+        <div class="col-sm-10">
+          <textarea
+            [(ngModel)]="parcel.geom_wkt"
+            name="geom_wkt"
+            class="form-control"
+            rows="4"
+            placeholder="POLYGON((...))"
+          ></textarea>
+        </div>
+      </div>
+        <!-- Gumbi za dodajanje, posodabljanje in Clear forme -->
+        <button type="button" class="btn btn-primary mt-0" (click)="saveRecords()"> Vstavi </button>
+        &nbsp;
+        <button type="button" class="btn btn-primary mt-0" (click)="updateRecords()"> Posodobi </button>
+        &nbsp;
+        <button type="button" class="btn btn-primary mt-0" (click)="clearForm()"> Počisti </button>
+    </form>
+
+    <!--  Tukaj dodamo komponento zemljevida z dogodkom wktChange -->
+    <div class="mt-4">
+      
+    </div>
+  </div>
+</div>
+

@@ -1,0 +1,17 @@
+<button mat-button (click)="select('parcel')">Parcele</button>
+<button mat-button (click)="select('building')">Stavbe</button>
+<button mat-button (click)="select('road')">Ceste</button>
+<button mat-button (click)="select('address')">Naslovi</button>
+<button mat-button (click)="openAbout()">O programu</button>
+
+
+<span class="spacer"></span>
+
+<ng-container *ngIf="!authService.isAuthenticated">
+   <button mat-button (click)="openLoginDialog()">Login</button>
+</ng-container>
+
+<ng-container *ngIf="authService.isAuthenticated">
+   <button mat-button (click)="openLogoutDialog()">Logout ({{ authService.username }})</button>
+</ng-container>
+

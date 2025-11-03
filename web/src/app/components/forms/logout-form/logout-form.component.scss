@@ -1,0 +1,17 @@
+.flexbox-exterior-container {
+  display: flex;
+  justify-content: center; /* horizontalno centriranje */
+  align-items: center;     /* vertikalno centriranje */
+  padding: 40px 0;         /* zgornji in spodnji padding, da ni vse skupaj prilepljeno */
+  min-height: 200px;       /* minimalna višina, da ima modal prostor za centriranje */
+}
+
+.flexbox-responsive-interior-container-500px {
+  max-width: 500px;
+  width: 100%;
+  /* morebitni dodatni styling */
+}
+
+.text-align-center {
+  text-align: center;
+}

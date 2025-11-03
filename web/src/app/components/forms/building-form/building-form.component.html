@@ -1,0 +1,83 @@
+<div class="container mt-0">
+  <h2>Kataster stavb</h2>
+  <div class="card">
+    <form #form="ngForm" class="container inner">
+      <div class="row mb-2 align-items-center">
+        <label class="col-sm-2 col-form-label">Številka stavbe:</label>
+        <div class="col-sm-4">
+          <input
+            type="text"
+            [(ngModel)]="building.st_stavbe"
+            name="st_stavbe"
+            class="form-control"
+            placeholder="st. stavbe"
+          />
+        </div>
+      </div>
+
+      <div class="row mb-2 align-items-center">
+        <label class="col-sm-2 col-form-label">Šifra KO:</label>
+        <div class="col-sm-4">
+          <input
+            type="text"
+            [(ngModel)]="building.sifko"
+            name="sifko"
+            class="form-control"
+            placeholder="Sifra KO"
+          />
+        </div>
+      </div>      
+
+      <div class="row mb-2 align-items-center">
+        <label class="col-sm-2 col-form-label">Opis:</label>
+        <div class="col-sm-4">
+          <input
+            type="text"
+            [(ngModel)]="building.description"
+            name="description"
+            class="form-control"
+            placeholder="Opis"
+          />
+        </div>
+      </div>
+
+      <div class="row mb-2 align-items-center">
+        <label class="col-sm-2 col-form-label">Površina:</label>
+        <div class="col-sm-4">
+          <input
+            type="number"
+            [(ngModel)]="building.area"
+            name="area"
+            class="form-control"
+            placeholder=""
+            disabled
+          />
+        </div>
+      </div>
+
+      <div class="row mb-3 align-items-center">
+        <label class="col-sm-2 col-form-label">Geom:</label>
+        <div class="col-sm-10">
+          <textarea
+            [(ngModel)]="building.geom_wkt"
+            name="geom_wkt"
+            class="form-control"
+            rows="4"
+            placeholder="POLYGON((...))"
+          ></textarea>
+        </div>
+      </div>
+        <!-- Gumbi za dodajanje, posodabljanje in Clear forme -->
+        <button type="button" class="btn btn-primary mt-0" (click)="saveRecords()"> Vstavi </button>
+        &nbsp;
+        <button type="button" class="btn btn-primary mt-0" (click)="updateRecords()"> Posodobi </button>
+        &nbsp;
+        <button type="button" class="btn btn-primary mt-0" (click)="clearForm()"> Počisti </button>
+    </form>
+
+    <!--  Tukaj dodamo komponento zemljevida z dogodkom wktChange -->
+    <div class="mt-4">
+      
+    </div>
+  </div>
+</div>

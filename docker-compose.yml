@@ -1,0 +1,14 @@
+services:
+  angular:
+    env_file:
+      - .env
+    build:
+      context: ./web
+    restart: "no"
+    ports:
+      - 0.0.0.0:4200:4200
+    command: ng serve --host 0.0.0.0 --port 4200 --poll=1000
+    volumes: 
+      - ./web:/usr/src/web
+
+

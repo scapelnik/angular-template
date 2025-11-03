@@ -1,0 +1,19 @@
+/* You can add global styles to this file, and also import other style files */
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+/* Prisilno skrij layer list ob zagonu */
+.ol-layerswitcher {
+  top: 10px !important;
+  left: 10px !important;
+  z-index: 1000 !important;
+  display: block !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+}
+
+.ol-layerswitcher .panel {
+  max-height: 300px !important;
+  overflow-y: auto !important;
+}

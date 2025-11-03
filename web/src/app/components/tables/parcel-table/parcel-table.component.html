@@ -1,0 +1,56 @@
+<div class="kontrolna-vrstica">
+  <div class="izbira-del">
+    <input type="radio" id="all" name="izbira" value="naloži vse" checked (click)="setIzbira('all')">
+    <label for="all">Select All</label>
+    &nbsp;&nbsp;&nbsp;
+    <input type="radio" id="one" name="izbira" value="naloži enega" (click)="setIzbira('one')">
+    <label for="one">Select One</label>
+    &nbsp;&nbsp;&nbsp;
+    <label for="fname">ID:</label>
+    <input type="text" id="e_izb" name="e_izb" size="3" [value]="inputId" (input)="onInputIdChange($event)">
+  </div>
+
+  <div class="iskanje-del">
+    <label for="i_ko">Iskanje zapisa KO:</label>
+    <input type="text" id="i_ko" name="i_ko" size="4" [(ngModel)]="iskanjeKO" placeholder="KO">
+    &nbsp;&nbsp;&nbsp;
+    <label for="i_parc">Parc. št.:</label>
+    <input type="text" id="i_parc" name="i_parc" size="7" [(ngModel)]="iskanjeParc" placeholder="Parc. št.">
+    <button type="button" class="btn btn-primary btn-sm me-1" (click)="isciParcelo()">Išči</button>
+  </div>
+</div>
+
+<div class="scrollable-table" #scrollContainer>       
+  <table class="table table-sm" style="--bs-table-cell-padding-y:0.1rem; --bs-table-cell-padding-x:0.25rem;">
+    <thead>
+      <tr>
+        <th>Id</th>
+        <th>Parc.št</th>
+        <th>KO</th>
+        <th>Površina</th>
+        <th>Geom WKT</th>
+        <th>Akcija</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let parcel of ParcelsArray" 
+          [class.selected]="isParcelSelected(parcel.id)">
+        <!-- <td>{{parcel.id}}</td>  -->
+        <a href="#" (click)="drawParcelGeometry(parcel); $event.preventDefault()">{{ parcel.id }}</a>
+        <td style="white-space: nowrap;">{{parcel.parc_st}}</td>
+        <td style="white-space: nowrap;">{{parcel.sifko}}</td>
+        <td>{{parcel.area}}</td>
+        <td>{{parcel.geom_wkt}}</td>
+        <td style="white-space: nowrap; width: 120px;">
+          <div class="d-flex justify-content-between">
+            <button type="button" class="btn btn-success btn-sm me-1" (click)="setUpdate(parcel)">Uredi</button>
+            <button type="button" class="btn btn-danger btn-sm" (click)="setDelete(parcel)">Briši</button>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table> 
+</div>
+
+        
+

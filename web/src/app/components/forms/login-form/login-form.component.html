@@ -1,0 +1,42 @@
+<div class="flexbox-exterior-container">
+    <div class="flexbox-responsive-interior-container-500px">
+        <h6 class="text-align-center">Login form</h6>
+
+        <!--Form start-->
+        <form [formGroup]="controlsGroup"> 
+            <mat-form-field>
+                <input matInput placeholder="username" [formControl]="username" name="username" matTooltip="Type your username">
+                <mat-error *ngIf="username.hasError('required')">
+                    The username is mandatory.
+                </mat-error>
+                <mat-error *ngIf="username.hasError('minlength')">
+                    Type more characteres.
+                </mat-error>
+            </mat-form-field>   
+            <br> 
+            <mat-form-field>
+                <input matInput type="password" placeholder="password" [formControl]="password" name="password" matTooltip="Type your password">
+                <mat-error *ngIf="password.hasError('required')">
+                    The password is mandatory.
+                </mat-error>
+                <mat-error *ngIf="password.hasError('minlength')">
+                    Type more characteres.
+                </mat-error>
+            </mat-form-field>  
+            <br>  
+
+         
+
+            <div class="text-align-center">
+                <button mat-raised-button matTooltip="Login" 
+                    [disabled]="!controlsGroup.valid"
+                    (click)="login()">Login</button>     <!--  ob kliku kličemo funkcijo login(), ki je v login-form.ts  -->
+            </div>
+
+            <br>
+                <p>{{serverMessage}}</p>
+        </form>
+    </div>
+</div>
+
+

@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="sl">
+<head>
+  <meta charset="UTF-8">
+  <title>About</title>
+  <style>
+    table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+    td {
+      vertical-align: top;
+      width: 50%;
+      padding: 20px;
+    }
+    img {
+      display: block;
+      margin-bottom: 15px;
+    }
+    h1, h2, h3 {
+      margin-top: 0;
+    }
+    body {
+      font-family: Arial, sans-serif;
+      line-height: 1.5;
+    }
+  </style>
+</head>
+
+<body>
+  <table>
+    <tr>
+      <!-- LEVI STOLPEC: FGG -->
+      <td>
+        <h1>Fakulteta za gradbeništvo in geodezijo (FGG)</h1>
+        <img src="/images/fgg_logo.jpg" alt="Logotip FGG" width="500">
+        <p>
+          Fakulteta za gradbeništvo in geodezijo Univerze v Ljubljani (UL FGG) je ena izmed<br>
+          vodilnih izobraževalnih in raziskovalnih ustanov na področju gradbeništva,<br>
+          geodezije in okoljskega inženirstva v Sloveniji. <br>
+          FGG povezuje tradicijo, kakovostno izobraževanje in sodobne tehnologije ter<br>
+          študentom omogoča pridobivanje znanja, ki je neposredno uporabno v praksi.<br><br>
+          V tej GIS aplikaciji prikazujemo sodobno zgrajeno aplikacijo, ki temelji na WEB servisih.<br>
+          Aplikacija omogoča vnos podatkov, urejanje podatkov in brisanje prostorskih podatkov.<br>
+          V back-endu so Django servisi, ki črpajo podatke iz Postgres baze. Postgres baza ima GIS ekstenzijo za grafične podatke<br>
+          Front-end je realiziran z Angularjem, ki prikazuje podatke na Open Layers karti.<br>
+          Aplikacija je uporabniško prijazna, odzivna in preprosta za uporabo.<br><br>
+
+          Profesor: <b>dr. Jernej Tekavec</b><br>
+          Študent: <b>Maj Čapelnik</b><br>
+        </p>
+      </td>
+
+      <!-- DESNI STOLPEC: UPV -->
+      <td>
+        <h1>Universitat Politècnica de València</h1>
+        <img src="/images/logo.jpg" alt="Logotip UPV" width="500">
+        <h3>Academic Master in Geomatic Engineering and Geoinformation</h3>
+        <h2>WEB DEVELOP AND GEOPORTALS</h2>
+        <p>
+          This is a simple web application for managing land registry data. <br>
+          It allows users to insert, update, and delete records related to parcels, addresses, and roads. <br>
+          The application is built using Angular and integrates with a PostgreSQL database. <br>
+          The application uses a Open Layers map with OpenStreetMap tiles for spatial input. <br>
+          The back-end is implemented using Django. <br>
+          It is designed to be user-friendly and responsive for easy navigation. <br><br>
+          Profesor: <b>J. Gaspar Mora Navarro</b><br>
+          Student: <b>Maj Čapelnik</b><br>
+        </p>
+      </td>
+    </tr>
+  </table>
+</body>
+</html>

@@ -1,0 +1,45 @@
+<!--
+Icon list:
+https://www.angularjswiki.com/angular/angular-material-icons-list-mat-icon-list/
+
+oblikovanje gumbov je v map.component.scss (tam je določen položaj gumba na karti)
+
+-->
+
+
+
+@if (drawMode) {
+  <button 
+    mat-button 
+    (click)="toggleDrawMode()" 
+    matTooltip="Stop drawing parcels">
+    <mat-icon>clear</mat-icon>
+  </button>
+} @else {
+  <button 
+    mat-button 
+    (click)="toggleDrawMode()" 
+    [disabled]="!canDraw"
+    matTooltip="Start drawing parcels">
+    <mat-icon>format_shapes</mat-icon>
+  </button>
+
+  <button 
+    id="select-parcel"
+    mat-button 
+    (click)="selectParcel()" 
+    [disabled]="!canDraw || drawMode"
+    [matTooltip]="selectMode ? 'Stop selecting parcels' : 'Select a parcel'">
+    <mat-icon>{{ (!canDraw || drawMode) ? 'near_me' : (selectMode ? 'select_all' : 'near_me') }}</mat-icon>
+  </button>
+
+  <button 
+    id="edit-parcel"
+    mat-button 
+    (click)="editParcel()" 
+    [disabled]="!canDraw || drawMode"
+    [matTooltip]="editMode ? 'Stop editing parcels' : 'Edit a parcel'">
+    <mat-icon>{{ (!canDraw || drawMode) ? 'create' : (editMode ? 'done_outline' : 'create') }}</mat-icon>
+  </button>
+}
+
