@@ -1,5 +1,6 @@
 .scrollable-table {                              /* To je tu, zaradi scrolanja zapisov v tabeli, določimo območje scrolanja, da glava tabele ostane kjer je*/
-  max-height: 380px; /* višina vidnega dela */
+  height: 100%;
+  // max-height: 380px; /* višina vidnega dela */
   overflow-y: auto;  /* omogoči navpični drsnik */
   border: 1px solid #ccc;
 }

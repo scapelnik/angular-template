@@ -4,8 +4,9 @@
   </div>
 
   <div class="main">
-    <div class="top">
-      <div class="left">
+     <!-- ZGORNJI DEL: forma + karta -->
+    <div class="top"> <!-- prilagodljiva višina zgornjega panela -->
+      <div class="left"  [style.width.%]="leftWidth">   <!-- prilagodljiva širina levega panela -->
         <ng-container [ngSwitch]="selectedType">
 
           <app-parcel-form 
@@ -35,14 +36,24 @@
         </ng-container>
       </div>
 
+      
+      <!-- drsni razdelilnik levo desno -->
+      <div class="divider" (mousedown)="startResizeX($event)"></div>  
+
+
       <div class="right">
         <ng-container>
            <app-map></app-map>
         </ng-container>
       </div>
-
     </div>
-    <div class="bottom">
+
+    <!-- Vertikalni razdelilnik gor-dol -->
+    <div class="dividerY" (mousedown)="startResizeY($event)"></div>
+
+
+    <!-- SPODNJI DEL: tabela -->
+    <div class="bottom" [style.height.%]="100 - topHeight">
       <ng-container [ngSwitch]="selectedType">
         
         <app-parcel-table 

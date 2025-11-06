@@ -1,6 +1,3 @@
-
-
-
 html, body {
   margin: 0;
   padding: 0;
@@ -33,7 +30,7 @@ html, body {
 }
 
 .top {
-  height: 60%;
+  height: 80%;
   display: flex;
 }
 
@@ -67,7 +64,7 @@ app-map {
 }
 
 .bottom {
-  height: 40%;
+  height: 20%;
   // background-color: lightcoral;
   overflow: auto;
 }
@@ -81,3 +78,19 @@ app-map {
   padding-left: 1rem;
 }
 
+/* Vodoravni razdelilnik levo-desno */
+.divider {
+  width: 5px;               // debelina
+  background-color: #d5ec52; // ista barva kot menu
+  cursor: col-resize;       // kazalec za horizontalno spreminjanje
+  z-index: 10;              // da se pokaže nad vsemi
+}
+
+/* Vertikalni razdelilnik gor-dol */
+.dividerY {
+  height: 5px;              // debelina
+  width: 100%;
+  background-color: #d5ec52; // ista barva kot menu
+  cursor: row-resize;       // kazalec za vertikalno spreminjanje
+  z-index: 10;
+}

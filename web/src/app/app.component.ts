@@ -1,4 +1,4 @@
-import { Component, ViewChild } from '@angular/core';
+import { Component, ViewChild, HostListener } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterOutlet } from '@angular/router';
 import { MenuComponent } from './components/menu/menu.component';
@@ -16,7 +16,7 @@ import { Router } from '@angular/router';
 import { MatDialog } from '@angular/material/dialog';
 import { LoginFormComponent } from './components/forms/login-form/login-form.component';
 import { MapService } from './services/map.service';
-
+import { GeoService } from './services/geo.service';
 
 
 @Component({
@@ -49,15 +49,72 @@ export class AppComponent {
   @ViewChild(AddressTableComponent) addressTable!: AddressTableComponent;
   @ViewChild(AddressFormComponent) addressForm!: AddressFormComponent;
   title = 'web';
+  leftWidth = 40; // začetna širina v %
+  topHeight = 60; // začetna višina karte v %
+  private isResizingX = false;
+  private isResizingY = false;
 
 
   constructor(
     public authService: AuthService, 
     private router: Router,
     private dialog: MatDialog,
-    private mapService: MapService   // <-- dodano za klic funkcij iz map.service 
-  ) {}
+    private mapService: MapService,   // <-- dodano za klic funkcij iz map.service 
+    private geoService: GeoService   // tukaj dodamo GeoService za izvoz Geopackage
+   ) {}
   statusText = '';
+
+  
+  @HostListener('document:mousemove', ['$event'])
+    onMouseMove(event: MouseEvent) {
+      if (this.isResizingX) {
+        const containerWidth = window.innerWidth;
+        const newWidth = (event.clientX / containerWidth) * 100;
+        if (newWidth > 10 && newWidth < 90) this.leftWidth = newWidth;
+      }
+
+      if (this.isResizingY) {
+        const containerHeight = window.innerHeight;
+        const newHeight = (event.clientY / containerHeight) * 100;
+        if (newHeight > 10 && newHeight < 90) this.topHeight = newHeight;
+      }
+  }
+
+
+  @HostListener('document:mouseup')
+    stopResize() {
+      this.isResizingX = false;
+      this.isResizingY = false;
+    }
+
+
+
+  startResizeX(event: MouseEvent) {   // začni spreminjati velikost panelov levo in desno
+    this.isResizingX = true;
+    event.preventDefault();
+  }
+
+    // --- vertikalno (gor-dol)
+  startResizeY(event: MouseEvent) {   // začni spreminjati velikost panelov gor in dol
+    this.isResizingY = true;
+    event.preventDefault();
+  }
+  
+
+  downloadGpkg() {
+    this.geoService.downloadGeoPackage().subscribe({
+      next: (blob) => {
+        const url = window.URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = 'podatki.gpkg';
+        a.click();
+        window.URL.revokeObjectURL(url);
+      },
+      error: (err) => console.error('Napaka pri prenosu GeoPackage:', err)
+    });
+  }
+
 
   updateStatus(message: string) {
     this.statusText = message;
