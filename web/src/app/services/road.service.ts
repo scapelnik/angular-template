@@ -6,6 +6,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpParams, HttpHeaders } from '@angular/common/http';
 import { Observable, tap } from 'rxjs';
 import { Road } from '../models/roads';  // pot do modela!
+import { SettingsService } from './settings.service';
 
 // Interface za podatke, ki jih pošiljamo ob save/update
 export interface RoadPayload {
@@ -18,10 +19,10 @@ export interface RoadPayload {
 
 @Injectable({ providedIn: 'root' })
 export class RoadService {
-  private baseUrl = 'http://10.32.52.147:8000/roads/roads/';
-  private insertUrl= 'http://10.32.52.147:8000/roads/roads_view/insert2/';
+  private baseUrl = this.settingsService.API_URL+'roads/roads/';
+  private insertUrl= this.settingsService.API_URL+'roads/roads_view/insert2/';
 
-  constructor(private http: HttpClient) {}
+  constructor(public settingsService:SettingsService,  private http: HttpClient) {}
 
   /** Pridobi vse ceste */
   getAll(): Observable<Road[]> {                                         // metoda za pridobivanje vseh cest
@@ -32,7 +33,7 @@ export class RoadService {
   }
 
     getOne(id: number): Observable<Road> {                             // metoda za pridobivanje ene ceste
-       const url = `http://localhost:8000/roads/roads/${id}/`;
+       const url = this.settingsService.API_URL+'roads/roads/${id}/';
        console.log(`RoadService: pridobivam cesto z ID=${id}`);
        return this.http.get<Road>(url).pipe(
          tap(road => console.log('Prejeta posamezna cesta:', road))

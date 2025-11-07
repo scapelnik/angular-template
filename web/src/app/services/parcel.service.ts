@@ -6,14 +6,15 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpParams, HttpHeaders } from '@angular/common/http';
 import { Observable, tap } from 'rxjs';
 import { Parcel } from '../models/parcel';  // prilagodi pot do modela
+import { SettingsService } from './settings.service';
 
 @Injectable({ providedIn: 'root' })
 export class ParcelService {
-  private baseUrl   = 'http://10.32.52.147:8000/parcels/parcels/';
-  private insertUrl = 'http://10.32.52.147:8000/parcels/parcels_view/insert2/';  
-  private updateUrl = 'http://10.32.52.147:8000/parcels/parcels_view/update/';  
+  private baseUrl   = this.settingsService.API_URL+'parcels/parcels/';                                  // API_URL='localhost:8000/' ali kaj drugega
+  private insertUrl = this.settingsService.API_URL+'parcels/parcels_view/insert2/';                     // nastavljeno je v settings.service.ts
+  private updateUrl = this.settingsService.API_URL+'parcels/parcels_view/update/';  
 
-  constructor(private http: HttpClient) {}
+  constructor(public settingsService:SettingsService, private http: HttpClient) {}                    // OSNOVE: Če hočemo uporabljat nastavitve iz settings.service.ts z ukazom this.settingsService.API_URL moramo tu vključit SettingsService
 
   /** Pridobi vse parcele */
   getAll(): Observable<Parcel[]> {
@@ -24,7 +25,7 @@ export class ParcelService {
   }
 
   getOne(id: number): Observable<Parcel> {
-     const url = `http://localhost:8000/parcels/parcels/${id}/`;
+     const url = this.settingsService.API_URL+'parcels/parcels/${id}/';                               // API_URL='localhost:8000/' ali kaj drugega
      console.log(`ParcelService: pridobivam parcelo z ID=${id}`);
      return this.http.get<Parcel>(url).pipe(
        tap(parcel => console.log('Prejeta posamezna parcela:', parcel))

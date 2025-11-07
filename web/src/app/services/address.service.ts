@@ -6,13 +6,14 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpParams, HttpHeaders } from '@angular/common/http';
 import { Observable, tap } from 'rxjs';
 import { Address } from '../models/address';  // prilagodi pot do modela
+import { SettingsService } from './settings.service';
 
 @Injectable({ providedIn: 'root' })
 export class AddressService {
-  private baseUrl = 'http://10.32.52.147:8000/addresses/addresses/';
+  private baseUrl = this.settingsService.API_URL+'addresses/addresses/';                      //  API_URL='localhost:8000/' ali kaj drugega
 
 
-  constructor(private http: HttpClient) {}
+  constructor(public settingsService:SettingsService, private http: HttpClient) {}
 
   /** Pridobi vse naslove - addresses */
   getAll(): Observable<Address[]> {
@@ -23,7 +24,7 @@ export class AddressService {
   }
 
   getOne(id: number): Observable<Address> {
-    const url = `http://10.32.52.147:8000/addresses/addresses/${id}/`;
+    const url = this.settingsService.API_URL+'addresses/addresses/${id}/';           // API_URL='localhost:8000/' ali kaj drugega
     console.log(`AddressService: pridobivam naslov z ID=${id}`);
     return this.http.get<Address>(url).pipe(
       tap(address => console.log('Prejeta posamezen naslov:', address))

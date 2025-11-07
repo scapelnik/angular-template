@@ -14,6 +14,7 @@ import { LogoutFormComponent } from '../components/forms/logout-form/logout-form
 import { transformExtentWithOptions } from 'ol/format/Feature';
 import { BehaviorSubject } from 'rxjs';  // za obvestila v statusni vrstici. Običajni emit ne deluje v servisih!
 import { HttpClient } from '@angular/common/http';
+import { SettingsService } from './settings.service';
 
 @Injectable({
   providedIn: 'root'
@@ -26,6 +27,7 @@ export class AuthService {
   public statusMessage$ = this.statusMessageSubject.asObservable();
 
   constructor(
+    public settingsService:SettingsService,
     public apiService: ApiService,
     private dialog: MatDialog,
     private http: HttpClient
@@ -36,7 +38,7 @@ export class AuthService {
   
   
   // #initCsrfToken() {
-  //   this.http.get('http://10.32.52.147:8000/core/csrf/', { withCredentials: true })
+  //   this.http.get(this.settingsService.API_URL+'core/csrf/', { withCredentials: true })
   //     .subscribe(() => console.log('[AuthService] CSRF token pridobljen'));
   // }
 

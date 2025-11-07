@@ -6,14 +6,15 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpParams, HttpHeaders } from '@angular/common/http';
 import { Observable, tap } from 'rxjs';
 import { Building} from '../models/building';  
+import { SettingsService } from './settings.service';
 
 @Injectable({ providedIn: 'root' })
 export class BuildingService {
-  private baseUrl   = 'http://10.32.52.147:8000/buildings/buildings/';
-  private insertUrl = 'http://10.32.52.147:8000/building/building_view/insert2/';  
-  private updateUrl = 'http://10.32.52.147:8000/building/building_view/update/';  
+  private baseUrl   = this.settingsService.API_URL+'buildings/buildings/';                // API_URL='localhost:8000/' ali kaj drugega
+  private insertUrl = this.settingsService.API_URL+'building/building_view/insert2/';  
+  private updateUrl = this.settingsService.API_URL+'building/building_view/update/';  
 
-  constructor(private http: HttpClient) {}
+  constructor(public settingsService:SettingsService, private http: HttpClient) {}
 
   /** Pridobi vse stavbe */
   getAll(): Observable<Building[]> {
@@ -24,7 +25,7 @@ export class BuildingService {
   }
 
   getOne(id: number): Observable<Building> {
-     const url = `http://localhost:8000/buildings/buildings/${id}/`;
+     const url = this.settingsService.API_URL+'buildings/buildings/${id}/';
      console.log(`BuildingService: pridobivam stavbo z ID=${id}`);
      return this.http.get<Building>(url).pipe(
        tap(building => console.log('Prejeta posamezna stavba:', building))
