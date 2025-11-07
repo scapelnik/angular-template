@@ -64,7 +64,19 @@ export class AppComponent {
    ) {}
   statusText = '';
 
-  
+
+  @HostListener('document:keydown', ['$event'])
+  handleKeyboardEvent(event: KeyboardEvent) {
+    console.log('[App.Component.ts], Key Pressed? ', event.key, 'alt:', event.altKey, 'shift:', event.shiftKey);
+
+    if (event.altKey && event.shiftKey && event.key.toLowerCase() === 'e') {
+      event.preventDefault();
+      console.log('[App.Component.ts]] Alt + Shift + e detected!');
+      this.downloadGpkg();
+    }
+  }  
+
+
   @HostListener('document:mousemove', ['$event'])
     onMouseMove(event: MouseEvent) {
       if (this.isResizingX) {
@@ -88,7 +100,6 @@ export class AppComponent {
     }
 
 
-
   startResizeX(event: MouseEvent) {   // začni spreminjati velikost panelov levo in desno
     this.isResizingX = true;
     event.preventDefault();
@@ -102,18 +113,22 @@ export class AppComponent {
   
 
   downloadGpkg() {
-    this.geoService.downloadGeoPackage().subscribe({
-      next: (blob) => {
-        const url = window.URL.createObjectURL(blob);
-        const a = document.createElement('a');
-        a.href = url;
-        a.download = 'podatki.gpkg';
-        a.click();
-        window.URL.revokeObjectURL(url);
-      },
-      error: (err) => console.error('Napaka pri prenosu GeoPackage:', err)
-    });
-  }
+      this.geoService.downloadGeoPackage().subscribe({
+        next: (blob) => {
+          const url = window.URL.createObjectURL(blob);
+          const a = document.createElement('a');
+          a.href = url;
+          a.download = 'podatki.gpkg';
+          a.click();
+          window.URL.revokeObjectURL(url);
+          this.statusText = "Zbirka je med prenosi!"; //  direktno BREZ EMITORJA ker smo že v parent komponenti
+        },
+        error: (err) => {
+          console.error('Napaka pri prenosu GeoPackage:', err);
+          this.statusText = "Napaka pri prenosu zbirke!";
+        }
+      });
+    }
 
 
   updateStatus(message: string) {

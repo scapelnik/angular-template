@@ -1,7 +1,9 @@
 .scrollable-table {                             /* To je tu, zaradi scrolanja zapisov v tabeli, določimo območje scrolanja, da glava tabele ostane kjer je*/
-  height: 100%;
+  height: calc(100vh - 3vh); /* 100vh minus višina menuja in statusa */
+  display: felx;
+  flex-direction: column;
   // max-height: 380px; /* višina vidnega dela */
-  overflow-y: auto;  /* omogoči navpični drsnik */
+  // overflow-y: auto;  /* omogoči navpični drsnik */
   border: 1px solid #ccc;
 }
 
