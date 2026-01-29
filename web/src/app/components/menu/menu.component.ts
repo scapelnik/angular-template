@@ -40,7 +40,7 @@ export class MenuComponent {
   }
 
   openAbout() {
-  window.open('/about.html', '_blank');
+  window.open('/moj_about/index.html', '_blank');
 }
 
   openLoginDialog() {
@@ -59,4 +59,5 @@ export class MenuComponent {
       width: '300px'
     });
   }
+
 }
