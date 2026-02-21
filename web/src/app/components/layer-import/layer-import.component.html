@@ -1,0 +1,35 @@
+<!-- Gumb za odpiranje panela -->
+<button class="import-btn" 
+        (click)="togglePanel()" 
+        matTooltip="Uvozi sloj (gpkg, shp, geojson)">
+  <mat-icon>folder_open</mat-icon>
+</button>
+
+<!-- Panel z uvoženi sloji -->
+<div class="import-panel" *ngIf="panelOpen">
+  <div class="panel-header">
+    <span>Uvoženi sloji</span>
+    <button class="add-btn" (click)="openFilePicker()" matTooltip="Dodaj sloj">
+      <mat-icon>add</mat-icon>
+    </button>
+  </div>
+
+  <div class="no-layers" *ngIf="layers.length === 0">
+    <span>Ni uvoženih slojev</span>
+    <button class="open-file-btn" (click)="openFilePicker()">Odpri datoteko</button>
+  </div>
+
+  <div class="layer-item" *ngFor="let layer of layers">
+    <mat-icon class="vis-icon" 
+              (click)="toggleVisibility(layer.id)"
+              matTooltip="{{ layer.visible ? 'Skrij' : 'Prikaži' }}">
+      {{ layer.visible ? 'visibility' : 'visibility_off' }}
+    </mat-icon>
+    <span class="layer-title" [title]="layer.title">{{ layer.title }}</span>
+    <mat-icon class="del-icon" 
+              (click)="removeLayer(layer.id)"
+              matTooltip="Odstrani sloj">
+      delete
+    </mat-icon>
+  </div>
+</div>

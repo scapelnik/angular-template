@@ -1,0 +1,101 @@
+:host {
+  display: contents;  // komponenta sama postane "nevidna" za grid, njeni gumbi padejo direktno v celice
+}
+
+
+.import-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  background: white;
+  border: 1px solid #bbb;
+  border-radius: 4px;
+  cursor: pointer;
+  padding: 0;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.2);
+
+  &:hover { background: #f0f0f0; }
+
+  mat-icon { font-size: 18px; color: #555; }
+}
+
+.import-panel {
+  position: absolute;
+  left: 35px;
+  top: 0;
+  background: white;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  min-width: 220px;
+  box-shadow: 2px 2px 6px rgba(0,0,0,0.2);
+  z-index: 10;
+
+  .panel-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 6px 8px;
+    background: #f5f5f5;
+    border-bottom: 1px solid #ddd;
+    font-size: 12px;
+    font-weight: bold;
+
+    .add-btn {
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 0;
+      mat-icon { font-size: 18px; color: #555; }
+      &:hover mat-icon { color: #000; }
+    }
+  }
+
+  .no-layers {
+    padding: 10px;
+    font-size: 12px;
+    color: #888;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+
+    .open-file-btn {
+      background: #1976d2;
+      color: white;
+      border: none;
+      border-radius: 3px;
+      padding: 4px 8px;
+      cursor: pointer;
+      font-size: 11px;
+      &:hover { background: #1565c0; }
+    }
+  }
+
+  .layer-item {
+    display: flex;
+    align-items: center;
+    padding: 4px 8px;
+    border-bottom: 1px solid #f0f0f0;
+    gap: 6px;
+
+    &:last-child { border-bottom: none; }
+
+    .vis-icon, .del-icon {
+      font-size: 16px;
+      cursor: pointer;
+      color: #777;
+      &:hover { color: #000; }
+    }
+
+    .del-icon:hover { color: #d32f2f; }
+
+    .layer-title {
+      flex: 1;
+      font-size: 16px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+  }
+}
