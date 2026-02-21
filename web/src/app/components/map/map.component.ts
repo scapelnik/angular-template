@@ -6,11 +6,12 @@ import { DrawParcelComponent } from '../draw-parcel/draw-parcel.component';
 import { DrawRoadComponent } from '../draw-road/draw-road.component';
 import { DrawAddressComponent } from '../draw-address/draw-address.component';
 import { DrawBuildingComponent } from '../draw-building/draw-building.component';
+import { LayerImportComponent } from '../layer-import/layer-import.component';  
 
 @Component({
   selector: 'app-map',
   standalone: true,
-  imports: [DrawParcelComponent, DrawRoadComponent, DrawAddressComponent, DrawBuildingComponent],
+  imports: [DrawParcelComponent, DrawRoadComponent, DrawAddressComponent, DrawBuildingComponent, LayerImportComponent],
   templateUrl: './map.component.html',
   styleUrl: './map.component.scss'
 })
