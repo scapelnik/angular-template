@@ -99,6 +99,7 @@ export class MapService {
   private shouldEmitAddressWkt = false;
   private drawInteraction: Draw | null = null;
   private snapInteraction: Snap | null = null;
+  private layerSwitcherAdded = false;
 
 
 
@@ -131,7 +132,6 @@ export class MapService {
       });
 
       this.map= this.createMap();//Create the map and store it in the mapService
-      // this.addLayerSwitcherControl();  // to sem prestavil v map.component v ngAfterViewInit()
       this.addMousePositionControl();
   }
 
@@ -456,6 +456,7 @@ export class MapService {
      this.parcelsVectorSource = new VectorSource({wrapX: false}); 
      this.parcelsVectorLayer = new VectorLayer({
        source: this.parcelsVectorSource,
+       zIndex: 10,  // nad uvoženim sloji (zIndex: 5)
        style: (feature: any, resolution: number) => {
         const minResolution = 1; // prilagodimo svojim potrebam
        
@@ -530,6 +531,7 @@ export class MapService {
      this.buildingsVectorSource = new VectorSource({wrapX: false}); 
      this.buildingsVectorLayer = new VectorLayer({
      source: this.buildingsVectorSource,
+     zIndex: 10,  // nad uvoženim sloji (zIndex: 5)
      style: (feature: any, resolution: number) => {                        // dodan stil za labele
         const minResolution = 1; // prilagodimo svojim potrebam
        
@@ -577,6 +579,7 @@ export class MapService {
     this.roadsVectorSource = new VectorSource({wrapX: false}); 
     this.roadsVectorLayer = new VectorLayer({
     source: this.roadsVectorSource,
+    zIndex: 10,  // nad uvoženim sloji (zIndex: 5)
     style: (feature: any, resolution: number) => {                        // dodan stil za labele
         const minResolution = 1; // prilagodimo svojim potrebam
        
@@ -620,6 +623,7 @@ export class MapService {
     this.addressVectorSource = new VectorSource({wrapX: false}); 
     this.addressVectorLayer = new VectorLayer({
       source: this.addressVectorSource,
+      zIndex: 10,  // nad uvoženim sloji (zIndex: 5)
       style: (feature: any, resolution: number) => {                        // dodan stil za labele
         const minResolution = 1; // prilagodimo svojim potrebam
        
@@ -730,6 +734,8 @@ export class MapService {
   }
 
   addLayerSwitcherControl() {
+    if (this.layerSwitcherAdded) return;  
+        this.layerSwitcherAdded = true;       
     const layerSwitcher = new LayerSwitcher(
       {
         activationMode: 'mouseover',
